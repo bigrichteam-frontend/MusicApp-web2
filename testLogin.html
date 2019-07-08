@@ -19,7 +19,7 @@
 </div>
 
 <script src="node_modules/vue/dist/vue.js"></script>
-<script src="node_modules/axios/dist/axios.js"></script>
+
 <script src="node_modules/vue-resource/dist/vue-resource.js"></script>
 <script>
 var test=new Vue({
@@ -33,10 +33,9 @@ var test=new Vue({
      },
     methods:{
         ajaxGoTest(){
-
               this.$http.post("http://127.0.0.1:8888/test/login",this.canshu).then(
                   function (res) {
-                      alert(res.bodyText()+"登录成功")
+                      alert("登录成功")
                       console.log(res.bodyText)
                   },function (res) {
 
