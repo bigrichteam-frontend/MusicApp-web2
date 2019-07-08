@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>跨域样板</title>
+
+
+
+
+</head>
+<body>
+
+<div id="test">
+    <h1>{{canshu.userName}}</h1>
+
+    <input  type="text"     v-model="canshu.userName"/>
+    <input  type="password"  v-model="canshu.password"/>
+    <button  @click="ajaxGoTest">跨域测试</button>
+</div>
+
+<script src="node_modules/vue/dist/vue.js"></script>
+<script src="node_modules/axios/dist/axios.js"></script>
+<script src="node_modules/vue-resource/dist/vue-resource.js"></script>
+<script>
+var test=new Vue({
+
+     el: "#test" ,
+     data: {
+       canshu:{
+           userName:"",
+           password:"",
+       }
+     },
+    methods:{
+        ajaxGoTest(){
+
+              this.$http.post("http://127.0.0.1:8888/test/login",this.canshu).then(
+                  function (res) {
+                      alert(res.bodyText()+"登录成功")
+                      console.log(res.bodyText)
+                  },function (res) {
+
+                  }
+              );
+        },
+    },
+
+
+});
+
+
+</script>
+</body>
+</html>

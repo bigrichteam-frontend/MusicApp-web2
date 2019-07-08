@@ -1,0 +1,320 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>FGMusic | 排行榜</title>
+<meta name="keywords" content="FGMusic" />
+<meta name="description" content="person music" />
+<link rel="stylesheet" type="text/css" href="dist/css/style.css" />
+<link rel="stylesheet" type="text/css" href="dist/css/player.css" />
+<link rel="Shortcut Icon" href="dist/images/favicon.ico" />
+<script type="text/javascript" src="../FGMusic/js/modernizr.js"></script>
+<script>
+    if ((!to3d()) || document.documentMode == 10 || document.documentMode == 11){
+        window.location="error/error.html";
+    }
+</script>
+</head>
+<body>
+
+
+
+<!--头部 开始-->
+<div id="header">
+    <!--顶部bar 开始-->
+
+    <div id="headCont">
+        <audio id="audioPlayer"></audio>
+    	<!--二级导航-->
+        <nav class="sub_nav">
+            <div class="nav_list">
+                <ul>
+                    <li>
+                    	<a href="index.html" class="smallogo">
+                        	<span class="mini_logo"></span>
+                        </a>
+                    </li>
+                    <div class="sub_list" id="home">
+                        <p class="active">
+                            <a href="index.html">主页</a>
+                        </p>
+                    </div>
+                    <div class="sub_list" id="sub_list">
+                        <p class="active">
+                        	<a href="?cat=9">播放器</a>
+                        </p>
+                    </div>
+                    <div class="sub_list" id="singers">
+                        <p class="active">
+                            <a href="singers.html">歌手</a>
+                        </p>
+                    </div>
+                    <div class="sub_list" id="music">
+                        <p class="active">
+                            <a href="rankingList.html">排行榜</a>
+                        </p>
+                    </div>
+                    <div class="sub_list" id="login" style="float: right">
+                        <p class="active">
+                            <a href="login.html">登录</a>
+                        </p>
+                    </div>
+                </ul>
+            </div>
+        </nav>
+    </div>
+  	<!--头部导航  结束-->
+</div>
+
+<!-- 音乐馆 模块 开始  default-->
+<section class="section_cont">
+
+    <div class="songs_rcmd_title" style="margin-top:100px">
+        <div class="rcmd_left_title rcmd_title">
+            <span style="font-size: 20px">热歌榜</span>
+            <a href="" class="more">/更多</a>
+        </div>
+        <div class="rcmd_center_title rcmd_title">
+            <span style="font-size: 20px">新歌榜</span>
+            <a href="" class="more">/更多</a>
+        </div>
+        <div class="rcmd_right_title rcmd_title">
+            <span style="font-size: 20px">飙升榜</span>
+            <a href="" class="more">/更多</a>
+        </div>
+    </div>
+
+    <div class="songs_rcmd" id="songs_rcmd">
+        <div class="songs_rcmd_cont">
+            <ul class="rcmd_left rcmd_cont" id="latest">
+				<li>
+                    <a href="" class="musicName"> Fleur de lis &#8211; Noicybino</a>
+                    <a class="shareIcon" href="javascript:;"></a>
+                    <a class="playIcon" href="javascript:;"></a>
+                </li>
+                <li>
+                    <a href="javascript:;" class="musicName">Dance, cherry blossoms! &#8211; Yuri akiyama</a>
+                    <a class="shareIcon" href="javascript:;"></a>
+                    <a class="playIcon" href="javascript:;"></a>
+                </li>
+                <li>
+                    <a href="javascript:;" class="musicName">Lost in Love &#8211; Bois LanYun</a>
+                    <a class="shareIcon" href="javascript:;"></a>
+                    <a class="playIcon" href="javascript:;"></a>
+                </li>
+                <li>
+                    <a href="javascript:;" class="musicName">远すぎた空 &#8211; Akito</a>
+                    <a class="shareIcon" href="javascript:;"></a>
+                    <a class="playIcon" href="javascript:;"></a>
+                </li>
+                <li>
+                    <a href="javascript:;" class="musicName">Whether &#8211;  AniFace</a>
+                    <a class="shareIcon" href="javascript:;"></a>
+                    <a class="playIcon" href="javascript:;"></a>
+                </li>
+                <li>
+                    <a href="javascript:;" class="musicName">Constellation Of Tatyana &#8211; Yakuro</a>
+                    <a class="shareIcon" href="javascript:;"></a>
+                    <a class="playIcon" href="javascript:;"></a>
+                </li>
+                <li>
+                    <a href="javascript:;" class="musicName">Princess &#8211; α·Pav</a>
+                    <a class="shareIcon" href="javascript:;"></a>
+                    <a class="playIcon" href="javascript:;"></a>
+                </li>
+                <li>
+                    <a href="javascript:;" class="musicName">Day by Day &#8211; Shirfine</a>
+                    <a class="shareIcon" href="javascript:;"></a>
+                    <a class="playIcon" href="javascript:;"></a>
+                </li>
+                <li>
+                    <a href="javascript:;" class="musicName">blue blossoms &#8211; 久遠</a>
+                    <a class="shareIcon" href="javascript:;"></a>
+                    <a class="playIcon" href="javascript:;"></a>
+                </li>
+            </ul>
+            <ul class="rcmd_center rcmd_cont" id="popular">
+				<li>
+                    <a href="javascript:;" class="musicName">無神論者のためのセレナータ &#8211; love solfege</a>
+                    <a class="shareIcon" href="javascript:;"></a>
+                    <a class="playIcon" href="javascript:;"></a>
+                </li>
+                <li>
+                    <a href="javascript:;" class="musicName">Proschenie &#8211; love solfege</a>
+                    <a class="shareIcon" href="javascript:;"></a>
+                    <a class="playIcon" href="javascript:;"></a>
+                </li>
+                <li>
+                    <a href="javascript:;" class="musicName">神の光 -Μοιρα- &#8211; Sound Horizon</a>
+                    <a class="shareIcon" href="javascript:;"></a>
+                    <a class="playIcon" href="javascript:;"></a>
+                </li>
+                <li>
+                    <a href="javascript:;" class="musicName">星女神の巫女 -Αρτεμισια- &#8211; Sound Horizon</a>
+                    <a class="shareIcon" href="javascript:;"></a>
+                    <a class="playIcon" href="javascript:;"></a>
+                </li>
+                <li>
+                    <a href="javascript:;" class="musicName">石畳の緋い悪魔 &#8211; Sound Horizon</a>
+                    <a class="shareIcon" href="javascript:;"></a>
+                    <a class="playIcon" href="javascript:;"></a>
+                </li>
+                <li>
+                    <a href="javascript:;" class="musicName">この狭い鳥籠の中で &#8211; Sound Horizon</a>
+                    <a class="shareIcon" href="javascript:;"></a>
+                    <a class="playIcon" href="javascript:;"></a>
+                </li>
+                <li>
+                    <a href="javascript:;" class="musicName">Secret Track &#8211; Sound Horizon</a>
+                    <a class="shareIcon" href="javascript:;"></a>
+                    <a class="playIcon" href="javascript:;"></a>
+                </li>
+                <li>
+                    <a href="javascript:;" class="musicName">a fairy tale &#8211; MUSIRISCA</a>
+                    <a class="shareIcon" href="javascript:;"></a>
+                    <a class="playIcon" href="javascript:;"></a>
+                </li>
+                <li>
+                    <a href="javascript:;" class="musicName">Prayer &#8211; MUSIRISCA</a>
+                    <a class="shareIcon" href="javascript:;"></a>
+                    <a class="playIcon" href="javascript:;"></a>
+                </li>
+            </ul>
+            <ul class="rcmd_right rcmd_cont" id="rank">
+				<li>
+                    <a href="javascript:;" class="musicName">创奏&#8211; 霜月はるか</a>
+                    <a class="shareIcon" href="javascript:;"></a>
+                    <a class="playIcon" href="javascript:;"></a>
+                </li>
+				<li>
+                    <a href="javascript:;" class="musicName">願い枯れゆく歌声 &#8211; Ether</a>
+                    <a class="shareIcon" href="javascript:;"></a>
+                    <a class="playIcon" href="javascript:;"></a>
+                </li>
+				<li>
+                    <a href="javascript:;" class="musicName">LICHT MEER &#8211; 河合夕子</a>
+                    <a class="shareIcon" href="javascript:;"></a>
+                    <a class="playIcon" href="javascript:;"></a>
+                </li>
+				<li>
+                    <a href="javascript:;" class="musicName">Nocturne No. 2  &#8211; Chopin</a>
+                    <a class="shareIcon" href="javascript:;"></a>
+                    <a class="playIcon" href="javascript:;"></a>
+                </li>
+				<li>
+                    <a href="javascript:;" class="musicName">夜曲 &#8211; Chopin</a>
+                    <a class="shareIcon" href="javascript:;"></a>
+                    <a class="playIcon" href="javascript:;"></a>
+                </li>
+				<li>
+                    <a href="javascript:;" class="musicName">降E大调夜曲 &#8211; Chopin</a>
+                    <a class="shareIcon" href="javascript:;"></a>
+                    <a class="playIcon" href="javascript:;"></a>
+                </li>
+				<li>
+                    <a href="javascript:;" class="musicName">即兴幻想曲 &#8211; Chopin</a>
+                    <a class="shareIcon" href="javascript:;"></a>
+                    <a class="playIcon" href="javascript:;"></a>
+                </li>
+				<li>
+                    <a href="javascript:;" class="musicName">Nocturne op. 32 &#8211; Chopin</a>
+                    <a class="shareIcon" href="javascript:;"></a>
+                    <a class="playIcon" href="javascript:;"></a>
+                </li>
+				<li>
+                    <a href="javascript:;" class="musicName">Prelude in Des &#8211; Chopin</a>
+                    <a class="shareIcon" href="javascript:;"></a>
+                    <a class="playIcon" href="javascript:;"></a>
+                </li>
+			</ul>
+        </div>
+    </div>
+    <div style="clear:both"></div>
+</section>
+
+<!-- 左侧播放器 开始-->
+<div id="jp_container_N" class="jp-video jp-video-270p" role="application" aria-label="media player">
+	<div class="jp-type-playlist">
+		<div id="jquery_jplayer_N"class="jp-jplayer"></div>
+		<div class="jp-gui">
+			<div class="jp-video-play">
+				<button class="jp-video-play-icon" role="button" tabindex="0">播放</button>
+			</div>
+			<div class="jp-interface">
+				<div class="jp-progress">
+					<div class="jp-seek-bar">
+						<div class="jp-play-bar"></div>
+					</div>
+				</div>
+				<div class="jp-current-time" role="timer" aria-label="time"></div>
+				<div class="jp-duration" role="timer" aria-label="duration"></div>
+				<div class="jp-controls-holder">
+					<div class="jp-controls">
+						<button class="jp-previous" role="button" tabindex="0">上一曲</button>
+						<button class="jp-play" role="button" tabindex="0">播放</button>
+						<button class="jp-next" role="button" tabindex="0">下一曲</button>
+						<button class="jp-stop" role="button" tabindex="0">暂停</button>
+					</div>
+					<div class="jp-volume-controls">
+						<button class="jp-mute" role="button" tabindex="0">静音</button>
+						<button class="jp-volume-max" role="button" tabindex="0">最大音量</button>
+						<div class="jp-volume-bar">
+							<div class="jp-volume-bar-value"></div>
+						</div>
+					</div>
+					<div class="jp-toggles">
+						<button class="jp-repeat" role="button" tabindex="0">重复</button>
+						<button class="jp-shuffle" role="button" tabindex="0">随机</button>
+						<!--<button class="jp-full-screen" role="button" tabindex="0">全屏</button>-->
+					</div>
+				</div>
+				<div class="jp-details">
+					<div class="jp-title" aria-label="title"></div>
+				</div>
+			</div>
+		</div>
+		<div class="jp-playlist">
+        	<div class="jp-playlist-box">
+                <ul>
+                    <!-- 该方法使用无序列表displayplaylist()播放列表 -->
+                    <li></li>
+                </ul>
+            </div>
+		</div>
+		<div class="jp-no-solution">
+			<span>升级需要</span>
+			您浏览器赞不支持播放，请更新版本
+            <a href="http://get.adobe.com/flashplayer/" target="_blank">Flash插件</a>.
+		</div>
+	</div>
+    <!--歌曲列表滚动条-->
+    <div class="scrollBar">
+    	<div class="bar"></div>
+    </div>
+    <!--播放器展开隐藏按钮-->
+    <button type="button" class="folded_bt" title="点击收缩" id="btnfold">
+    	<span></span>
+   	</button>
+    <div id="listRemove"></div><!--移除全部歌曲按钮-->
+    <div id="listClose"></div><!--歌曲列表展开收缩按钮-->
+</div>
+<!-- 左侧播放器 结束-->
+
+<!--底部-->
+<div class="footer" id="footer" style="margin-top:100px">
+    <div class="footer_cont_left" style="margin-left: 30%">
+        <p>富贵云音乐   |     备案号   |<a href="http://www.beian.gov.cn">湘ICP备18023941号-1</a></p>
+        <p>大富大贵组 |  王豪贵&nbsp;王志坚&nbsp;吴星辰&nbsp;向清润&nbsp;陈晓明&nbsp;王承超<br>Copyright @ <a href="http://cheirmin.top">Cheirmin </a> 2019</p>
+    </div>
+</div>
+
+<script type="text/javascript" src="plugins/jquery/jquery.js"></script>
+<script type="text/javascript" src="dist/js/index.js"></script>
+<!--播放器js-->
+<script type="text/javascript" src="dist/js/player.js"></script>
+<script type="text/javascript" src="dist/js/playlist.js"></script>
+<script type="text/javascript" src="dist/js/player_database.js"></script>
+<!--播放器js-->
+<!-- 底部模板调用 结束 -->
+</body>
+</html>
