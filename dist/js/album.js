@@ -7,19 +7,18 @@ $(function () {
     //modal绑定hide事件
     $('#pictureModal').on('hide.bs.modal', function () {
         reset();
-    })
+    });
     $("#jqGrid").jqGrid({
-        url: 'pictures/list',
+        url: 'http://localhost:8888/album/select',
         datatype: "json",
         colModel: [
-            {label: 'aid', name: 'aid', index: 'aid', width: 50, sortable: false, hidden: true, key: true},
-            {label: '专辑名', name: 'album', index: 'album', sortable: false, width: 80},
-            {label: '语种', name: 'language', index: 'language', sortable: false, width: 80},
-
-            {label: '详情', name: 'information', index: 'information', sortable: false, width: 160},
-            {label: '专辑图片', name: 'path', index: 'path', sortable: false, width: 105, formatter: imgFormatter},
-
-            {label: '创建时间', name: 'createTime', index: 'createTime', sortable: true, width: 80}
+            {label: '歌手id', name: 'sid', index: 'sid', width: 50, sortable: false, hidden: true, key: true},
+            {label: '专辑名', name: 'albumName', index: 'albumName', sortable: false, width: 80},
+            {label: '语种', name: 'lang', index: 'lang', sortable: false, width: 80},
+            {label: '详情', name: 'albumInfo', index: 'albumInfo', sortable: false, width: 160},
+            {label: '专辑图片', name: 'headUrl', index: 'headUrl', sortable: false, width: 105, formatter: imgFormatter},
+            {label: '创建时间', name: 'releaseDate', index: 'releaseDate', sortable: true, width: 80},
+            {label: '有效', name: 'isDeleted', index: 'isDeleted', sortable: true, width: 80}
         ],
         height: 385,
         rowNum: 10,
@@ -32,10 +31,10 @@ $(function () {
         multiselect: true,
         pager: "#jqGridPager",
         jsonReader: {
-            root: "data.list",
-            page: "data.currPage",
-            total: "data.totalPage",
-            records: "data.totalCount"
+            root: "items",
+            page: "currPage",
+            total: "totalPage",
+            records: "total"
         },
         prmNames: {
             page: "page",
@@ -110,10 +109,17 @@ $('#saveButton').click(function () {
         //一切正常后发送网络请求
         //ajax
         var id = $("#pictureId").val();
-        var picturePath = $("#picturePath").val();
-        var pictureRemark = $("#pictureRemark").val();
-        var data = {"path": picturePath, "remark": pictureRemark};
-        var url = 'pictures/save';
+
+        var albumInfo = $('#pictureRemark').val();
+        var releaseDate = $('#releaseDate').val();
+        var lang = $('#lang').val();
+        var albumName = $('#albumName').val();
+        var isDeleted = $('#isDeleted').val();
+        var headUrl = $('#img').src();
+        var data = {"id":id,"albumInfo": albumInfo, "releaseDate": releaseDate,
+                    "lang":lang,"albumName": albumName, "isDeleted": isDeleted,
+                    "headUrl":headUrl};
+        var url = 'http://localhost:8888/album/add';
         //id>0表示编辑操作
         if (id > 0) {
             data = {"id": id, "path": picturePath, "remark": pictureRemark};
@@ -124,10 +130,6 @@ $('#saveButton').click(function () {
             dataType: "json",//预期服务器返回的数据类型
             url: url,//url
             contentType: "application/json; charset=utf-8",
-            beforeSend: function (request) {
-                //设置header值
-                request.setRequestHeader("token", getCookie("token"));
-            },
             data: JSON.stringify(data),
             success: function (result) {
                 checkResultCode(result.resultCode);
@@ -158,13 +160,13 @@ $('#saveButton').click(function () {
 
 function pictureAdd() {
     reset();
-    $('.modal-title').html('图片添加');
+    $('.modal-title').html('专辑添加');
     $('#pictureModal').modal('show');
 }
 
 function pictureEdit(){
     reset();
-    $('.modal-title').html('图片编辑');
+    $('.modal-title').html('专辑编辑');
 
     var id = getSelectedRow();
     if (id == null) {
@@ -228,6 +230,12 @@ function reset() {
     $('#pictureId').val(0);
     $('#picturePath').val('');
     $('#pictureRemark').val('');
+    $('#releaseDate').val('');
+    $('#lang').val('');
+    $('#albumName').val('');
+    $('#isDeleted').val('');
+    $('#sid').val('');
+    $('#img').attr('src','');
     $("#img").attr("style", "display:none;");
 }
 
