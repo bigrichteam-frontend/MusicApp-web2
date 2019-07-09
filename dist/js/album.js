@@ -12,7 +12,8 @@ $(function () {
         url: 'http://localhost:8888/album/select',
         datatype: "json",
         colModel: [
-            {label: '歌手id', name: 'sid', index: 'sid', width: 50, sortable: false, hidden: true, key: true},
+            {label: 'id', name: 'id', index: 'id', width: 50, sortable: false, hidden: true, key: true},
+            {label: '歌手id', name: 'sid', index: 'sid', width: 50, sortable: false},
             {label: '专辑名', name: 'albumName', index: 'albumName', sortable: false, width: 80},
             {label: '语种', name: 'lang', index: 'lang', sortable: false, width: 80},
             {label: '详情', name: 'albumInfo', index: 'albumInfo', sortable: false, width: 160},
@@ -71,7 +72,6 @@ $(function () {
                 });
                 $("#picturePath").val(r.data);
                 $("#img").attr("src", r.data);
-                $("#img").attr("style", "width: 100px;height: 100px;display:block;");
                 return false;
             } else {
                 swal(r.message, {
@@ -86,20 +86,20 @@ $(function () {
 
 function search() {
     //标题关键字
+    var sid = $('#sidKey').val();
     var keyword = $('#keyword').val();
     if (!validLength(keyword, 20)) {
         swal("搜索字段长度过大!", {
-            icon: "error",
+            icon: "error"
         });
         return false;
     }
 
     //传入查询条件参数
-    $("#jqGrid").jqGrid("setGridParam");
     //点击搜索按钮默认都从第一页开始
-    $("#jqGrid").jqGrid("setGridParam", {page: 1});
+    $("#jqGrid").jqGrid("setGridParam", {page: 1,postData:{"key":keyword,"sid":sid}});
     //提交post并刷新表格
-    $("#jqGrid").jqGrid("setGridParam", {url: 'articles/search'}).trigger("reloadGrid");
+    $("#jqGrid").jqGrid("setGridParam", {url: 'http://localhost:8888/album/search'}).trigger("reloadGrid");
 }
 
 //绑定modal上的保存按钮
@@ -115,42 +115,44 @@ $('#saveButton').click(function () {
         var lang = $('#lang').val();
         var albumName = $('#albumName').val();
         var isDeleted = $('#isDeleted').val();
-        var headUrl = $('#img').src();
+        var headUrl = $('#img').attr("src");
+        var sid = $('#sid').val();
         var data = {"id":id,"albumInfo": albumInfo, "releaseDate": releaseDate,
                     "lang":lang,"albumName": albumName, "isDeleted": isDeleted,
-                    "headUrl":headUrl};
+                    "sid": sid,"headUrl":headUrl};
         var url = 'http://localhost:8888/album/add';
         //id>0表示编辑操作
         if (id > 0) {
-            data = {"id": id, "path": picturePath, "remark": pictureRemark};
-            url = 'pictures/update';
+            var data = {"id":id,"albumInfo": albumInfo, "releaseDate": releaseDate,
+                "lang":lang,"albumName": albumName, "isDeleted": isDeleted,
+                "sid": sid,"headUrl":headUrl};
+            url = 'http://localhost:8888/album/update';
         }
         $.ajax({
             type: 'POST',//方法类型
-            dataType: "json",//预期服务器返回的数据类型
+            //dataType: "json",//预期服务器返回的数据类型
             url: url,//url
             contentType: "application/json; charset=utf-8",
             data: JSON.stringify(data),
             success: function (result) {
-                checkResultCode(result.resultCode);
-                if (result.resultCode == 200) {
+                if (result == '添加成功！'||result == '修改成功！') {
                     $('#pictureModal').modal('hide');
-                    swal("保存成功", {
-                        icon: "success",
+                    swal(result, {
+                        icon: "success"
                     });
                     reload();
                 }
                 else {
                     $('#pictureModal').modal('hide');
-                    swal("保存失败", {
-                        icon: "error",
+                    swal("result", {
+                        icon: "error"
                     });
                 }
                 ;
             },
             error: function () {
                 swal("操作失败", {
-                    icon: "error",
+                    icon: "error"
                 });
             }
         });
@@ -175,19 +177,20 @@ function pictureEdit(){
     //请求数据
     $.ajax({
         type: "GET",
-        url: "pictures/info/" + id,
+        url: "http://localhost:8888/album/selectByAlbum?id=" + id,
         contentType: "application/json",
-        beforeSend: function (request) {
-            //设置header值
-            request.setRequestHeader("token", getCookie("token"));
-        },
         success: function (r) {
-            checkResultCode(r.resultCode);
-            if (r.resultCode == 200 && r.data != null){
+            if (r!= null){
                 //填充数据至modal
-                $('#pictureId').val(r.data.id);
-                $('#picturePath').val(r.data.path);
-                $('#pictureRemark').val(r.data.remark);
+                $("#pictureId").val(r.id);
+                $('#pictureRemark').val(r.albumInfo);
+                $('#releaseDate').val(r.releaseDate);
+                $('#lang').val(r.lang);
+                $('#albumName').val(r.albumName);
+                $('#isDeleted').val(r.isDeleted);
+                $('#img').attr("src",r.headUrl);
+                $('#picturePath').val(r.headUrl);
+                $('#sid').val(r.sid);
             }
         }
     });
@@ -200,23 +203,23 @@ function pictureEdit(){
  */
 function validObject() {
     var picturePath = $('#picturePath').val();
-    if (isNull(picturePath)) {
-        showErrorInfo("图片不能为空!");
-        return false;
-    }
+    // if (isNull(picturePath)) {
+    //     showErrorInfo("图片不能为空!");
+    //     return false;
+    // }
     var pictureRemark = $('#pictureRemark').val();
     if (isNull(pictureRemark)) {
         showErrorInfo("备注信息不能为空!");
         return false;
     }
-    if (!validLength(pictureRemark, 150)) {
-        showErrorInfo("备注信息长度不能大于150!");
-        return false;
-    }
-    if (!validLength(picturePath, 120)) {
-        showErrorInfo("图片上传有误!");
-        return false;
-    }
+    // if (!validLength(pictureRemark, 150)) {
+    //     showErrorInfo("备注信息长度不能大于150!");
+    //     return false;
+    // }
+    // if (!validLength(picturePath, 120)) {
+    //     showErrorInfo("图片上传有误!");
+    //     return false;
+    // }
     return true;
 }
 
@@ -235,8 +238,7 @@ function reset() {
     $('#albumName').val('');
     $('#isDeleted').val('');
     $('#sid').val('');
-    $('#img').attr('src','');
-    $("#img").attr("style", "display:none;");
+    $('#img').attr('src');
 }
 
 function deletePicture() {
@@ -254,22 +256,17 @@ function deletePicture() {
         if (flag) {
             $.ajax({
                 type: "POST",
-                url: "pictures/delete",
-                contentType: "application/json",
-                beforeSend: function (request) {
-                    //设置header值
-                    request.setRequestHeader("token", getCookie("token"));
-                },
+                url: "http://localhost:8888/album/delete",
+                contentType: "application/json; charset=utf-8",
                 data: JSON.stringify(ids),
                 success: function (r) {
-                    checkResultCode(r.resultCode);
-                    if (r.resultCode == 200) {
-                        swal("删除成功", {
+                    if (r == '删除成功！') {
+                        swal("删除成功！", {
                             icon: "success",
                         });
                         $("#jqGrid").trigger("reloadGrid");
                     } else {
-                        swal(r.message, {
+                        swal(r, {
                             icon: "error",
                         });
                     }
