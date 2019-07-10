@@ -5,10 +5,10 @@
     <title>FGMusic | 歌手列表</title>
     <meta name="keywords" content="FGMusic" />
     <meta name="description" content="person music" />
-    <link rel="stylesheet" type="text/css" href="css/style.css" />
-    <link rel="stylesheet" type="text/css" href="css/player.css" />
-    <link rel="Shortcut Icon" href="images/favicon.ico" />
-    <script type="text/javascript" src="js/modernizr.js"></script>
+    <link rel="stylesheet" type="text/css" href="dist/css/style.css" />
+    <link rel="stylesheet" type="text/css" href="dist/css/player.css" />
+    <link rel="Shortcut Icon" href="dist/images/favicon.ico" />
+    <script type="text/javascript" src="dist/js/modernizr.js"></script>
     <script>
         if ((!to3d()) || document.documentMode == 10 || document.documentMode == 11){
             window.location="error/error.html";
@@ -101,12 +101,13 @@
                 <span>我的信息</span>
             </div>
             <form style="margin-top: 20px;margin-left: 20px">
-                <span >账号：<input value="user" style="font-size: 20px"/></span><br><br>
-                <span >邮箱：<input value="1147905069@qq.com" style="font-size: 20px"/></span><br><br>
-                <span >密码：<input value="password" style="font-size: 20px"/></span><br><br>
-                <span >其他：<input value="nothing" style="font-size: 20px"/></span><br><br>
-                <input type="submit" value="提交修改" style="font-size: 20px;width: 150px;height: 40px"  />
-                <button formaction="login.html" style="font-size: 20px;width: 150px;height: 40px"  >注销登陆</button>
+                <span >姓名：<input value="user" style="font-size: 20px;height:30px;border:0px;background:rgba(0, 0, 0, 0);color: #FFFFFF"/></span><br><br>
+                <span >邮箱：<input value="1147905069@qq.com" style="font-size: 20px;height:30px;border:0px;background:rgba(0, 0, 0, 0);color: #FFFFFF"/></span><br><br>
+                <span >密码：<input value="password" style="font-size: 20px;height:30px;border:0px;background:rgba(0, 0, 0, 0);color: #FFFFFF"/></span><br><br>
+                <span >其他：<input value="nothing" style="font-size: 20px;height:30px;border:0px;background:rgba(0, 0, 0, 0);color: #FFFFFF"/></span><br><br>
+
+                <input  type="submit" value="提交修改" style="background-color:#77438B;color: #FFFFFF; font-size: 20px;width: 150px;height: 40px"  />
+                <input formaction="login.html" type="submit" value="注销登录" style="background-color:#77438B;color: #FFFFFF; font-size: 20px;width: 150px;height: 40px"  />
             </form>
 
         </div>
@@ -190,12 +191,12 @@
     </div>
 </div>
 
-<script type="text/javascript" src="js/jquery.js"></script>
-<script type="text/javascript" src="js/index.js"></script>
+<script type="text/javascript" src="plugins/jquery/jquery.js"></script>
+<script type="text/javascript" src="dist/js/index.js"></script>
 <!--播放器js-->
-<script type="text/javascript" src="js/player.js"></script>
-<script type="text/javascript" src="js/playlist.js"></script>
-<script type="text/javascript" src="js/player_database.js"></script>
+<script type="text/javascript" src="dist/js/player.js"></script>
+<script type="text/javascript" src="dist/js/playlist.js"></script>
+<script type="text/javascript" src="dist/js/player_database.js"></script>
 <!--播放器js-->
 <!-- 底部模板调用 结束 -->
 </body>
