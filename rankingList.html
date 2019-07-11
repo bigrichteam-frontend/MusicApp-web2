@@ -95,7 +95,7 @@
 				<li v-for="song in rank1" >
                     <a href="" class="musicName"> {{song.name}}</a>
                     <a class="shareIcon" href="javascript:;"></a>
-                    <a class="playIcon" href="javascript:;"></a>
+                    <a class="playIcon" @click="addMusicPosion(+song.rid)"></a>
                 </li>
 
             </ul>
@@ -103,7 +103,7 @@
 				<li v-for="song in rank2" >
                     <a href="javascript:;" class="musicName"> {{song.name}}</a>
                     <a class="shareIcon" href="javascript:;"></a>
-                    <a class="playIcon" href="javascript:;"></a>
+                    <a class="playIcon" @click="addMusicPosion(+song.rid)"></a>
                 </li>
 
             </ul>
@@ -111,11 +111,16 @@
 				<li v-for="song in rank3" >
                     <a href="javascript:;" class="musicName"> {{song.name}}</a>
                     <a class="shareIcon" href="javascript:;"></a>
-                    <a class="playIcon" href="javascript:;"></a>
+                    <a class="playIcon" @click="addMusicPosion(+song.rid)"></a>
                 </li>
 
 			</ul>
         </div>
+    </div>
+    <div style="text-align:center">
+        <h4>选定好歌曲后，点击播放</h4>
+        <audio id="musicplay" src="" id="audio" controls="controls" ></audio>
+        <div id="pagerUtil"></div>
     </div>
     <div style="clear:both"></div>
 </section>
@@ -235,6 +240,22 @@
 
                     }
                 );
+            },addMusicPosion(rid) {
+                console.log(rid);
+                $.ajax({
+                    type: 'GET',//方法类型
+                    //dataType: "json",//预期服务器返回的数据类型
+                    url: "http://localhost:8888/GainData/getMusicPosion?rid="+rid,//url
+                    contentType: "application/json; charset=utf-8",
+                    success: function (result) {
+                        console.log("result:" + result);
+                        var playm = $("#musicplay")[0];
+                        playm.src = result;
+                        playm.play();
+                    },
+                    error: function () {
+                    }
+                })
             }
         }
 

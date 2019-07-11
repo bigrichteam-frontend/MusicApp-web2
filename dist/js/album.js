@@ -21,7 +21,7 @@ $(function () {
             {label: '创建时间', name: 'releaseDate', index: 'releaseDate', sortable: true, width: 80},
             {label: '有效', name: 'isDeleted', index: 'isDeleted', sortable: true, width: 80}
         ],
-        height: 385,
+        height: 560,
         rowNum: 10,
         rowList: [10, 30, 50],
         styleUI: 'Bootstrap',

@@ -74,47 +74,45 @@
             <div data-v-f8a89b8e="" class="singer_bg"></div>
             <div data-v-f8a89b8e="" class="singer_info flex_c" style="margin: auto">
                 <div data-v-f8a89b8e="" class="s_imgout">
-                    <img data-v-f8a89b8e="" src="http://star.kuwo.cn/star/starheads/300/61/99/2461721588.jpg" alt="" class="s_img" data-src="http://star.kuwo.cn/star/starheads/300/61/99/2461721588.jpg"
-                         lazy="loaded">
+                    <img :src="singer.headUrl"  alt="" width="250" height="250">
                 </div>
                 <div data-v-f8a89b8e="" class="info">
                     <p data-v-f8a89b8e="" class="name_out flex_c">
-                        <span data-v-f8a89b8e="" class="name">周杰伦</span>
+                        <span data-v-f8a89b8e="" class="name" v-text="singer.cName?singer.cName:singer.name"></span>
                         <!---->
                     </p>
                     <div data-v-f8a89b8e="" class="info_items">
                         <span data-v-f8a89b8e="">单曲：
-                            <span data-v-f8a89b8e="" class="num">1030</span>
+                            <span data-v-f8a89b8e="" class="num" v-text="singer.yuliu?singer.yuliu:'无'"></span>
                         </span>
                         <span data-v-f8a89b8e="">专辑：
-                            <span data-v-f8a89b8e="" class="num">37</span>
+                            <span data-v-f8a89b8e="" class="num" v-text="singer.yuliu_2?singer.yuliu_2:'无'"></span>
                         </span>
-                        <span data-v-f8a89b8e="">MV：
-                            <span data-v-f8a89b8e="" class="num">359</span>
-                        </span>
+                        <!--<span data-v-f8a89b8e="">MV：-->
+                        <!--<span data-v-f8a89b8e="" class="num">359</span>-->
+                        <!--</span>-->
                         <span data-v-f8a89b8e="">粉丝：
-                            <span data-v-f8a89b8e="" class="num">81.5W</span>
+                            <span data-v-f8a89b8e="" class="num" v-text="singer.artistFans?singer.artistFans:0"></span>
                         </span>
                     </div>
                     <div data-v-f8a89b8e="" class="singer_items flex_c">
                         <p data-v-f8a89b8e="">
                             <span data-v-f8a89b8e="">英文名：
-                                <span data-v-f8a89b8e="">Jay&nbsp;Chou</span>
+                                <span data-v-f8a89b8e="" v-text="singer.name?singer.name:'无'"></span>
                             </span>
                             <span data-v-f8a89b8e="">星座：
-                                <span data-v-f8a89b8e="">魔羯座</span>
+                                <span data-v-f8a89b8e="" v-text="singer.xingZuo?singer.xingZuo:'无'"></span>
                             </span>
                             <span data-v-f8a89b8e="">体重：
-                                    <span data-v-f8a89b8e="">60KG</span>
+                                    <span data-v-f8a89b8e="" v-text="singer.weight?singer.weight:'无'"></span>
                             </span>
-                            <span data-v-f8a89b8e="">身高：
-                                    <span data-v-f8a89b8e="">173CM</span>
-                            </span>
+                            <!--<span data-v-f8a89b8e="">身高：-->
+                            <!--<span data-v-f8a89b8e="">173CM</span>-->
+                            <!--</span>-->
                         </p>
                     </div>
                     <div data-v-f8a89b8e="" class="btns">
-                        <button data-v-f8a89b8e="" class="play">
-                            <i data-v-f8a89b8e="" class="iconfont icon-icon_play_"></i>播放全部歌曲</button>
+
                         <button data-v-f8a89b8e="">
                             <i data-v-f8a89b8e="" class="iconfont icon-bar_icon_heart_"></i>收藏</button>
                     </div>
@@ -128,7 +126,7 @@
             <div class="omnibuss_title new_common_title">
                 <span>专辑</span>
                 <span><a href="" class="more">更多-></a> </span>
-                <span><a :href="'/music-web2/album.html?sid=' + sid" class="more">歌手歌曲-></a> </span>
+                <span><a :href="'/music-web2/singerInfo.html?sid=' + sid" class="more">歌手歌曲-></a> </span>
             </div>
             <ul class="rcmd_center rcmd_cont" id="singerMusic">
                 <li v-for="album in albums">
@@ -258,11 +256,15 @@
                 page: 1,
                 limit:9
             },
+            singerId:{
+                sid:""
+            },
             sid:0,
             totalPage: 0,
             total:0,
             currPage:0,
-            albums: []
+            albums: [],
+            singer:{}
         },
         created() {
             this.search.sid = this.getUrlParam("sid");
@@ -278,19 +280,12 @@
 
                 }
                 return null;
-            },
-            ajaxGoPageSearch(){
-                this.$http.post("http://127.0.0.1:8888/album/search_1",this.search).then(
+            },getSinger(){
+                this.singerId.sid = this.getUrlParam("sid");
+                this.$http.post("http://127.0.0.1:8888/singer/getOneSinger",this.singerId).then(
                     function (res) {
                         if (res.status==200){
-
-                            this.totalPage=res.body.totalPage;
-                            this.total=res.body.total;
-                            this.currPage=res.body.currPage;
-                            this.albums=res.body.items;
-
-                            console.log(this.albums[0].sid);
-                            this.sid = this.albums[0].sid;
+                            this.singer=res.data
                         }
 
                     },function (res) {
@@ -298,8 +293,8 @@
                     }
                 );
             },
-            getSinger(){
-                this.$http.post("http://127.0.0.1:8888/soger/search_1",this.search).then(
+            ajaxGoPageSearch(){
+                this.$http.post("http://127.0.0.1:8888/album/search_1",this.search).then(
                     function (res) {
                         if (res.status==200){
 

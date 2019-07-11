@@ -97,8 +97,7 @@
                             </p>
                         </div>
                         <div data-v-f8a89b8e="" class="btns">
-                            <button data-v-f8a89b8e="" class="play">
-                                <i data-v-f8a89b8e="" class="iconfont icon-icon_play_"></i>播放全部歌曲</button>
+
                             <button data-v-f8a89b8e="">
                                 <i data-v-f8a89b8e="" class="iconfont icon-bar_icon_heart_"></i>收藏</button>
                         </div>
@@ -112,15 +111,21 @@
                 <div class="omnibuss_title new_common_title">
                     <span>歌曲</span>
                     <span><a :href="'/music-web2/album.html?sid=' + sid" class="more">歌手专辑-></a> </span>
+
                 </div>
                 <ul class="rcmd_center rcmd_cont" id="singerMusic">
                     <li v-for="song in songs" >
-                        <a href="javascript:;" class="musicName"> {{song.name}}</a>
-                        <a class="shareIcon" href="javascript:;"></a>
-                        <a class="playIcon" href="javascript:;"></a>
+                        <a  class="musicName"> {{song.name}}</a>
+                        <a class="shareIcon" ></a>
+                        <a class="playIcon" @click="addMusicPosion(+song.rid)"></a>
                     </li>
                 </ul>
             </div>
+        </div>
+        <div style="text-align:center">
+            <h4>选定好歌曲后，点击播放</h4>
+            <audio id="musicplay" src="" id="audio" controls="controls" ></audio>
+            <div id="pagerUtil"></div>
         </div>
         <div class="songs_rcmd_title" style="margin-top:100px">
             <div @click="pageAfter" class="rcmd_left_title rcmd_title" style="text-align:center">
@@ -300,6 +305,22 @@
 
                     }
                 );
+                },addMusicPosion(rid) {
+                    console.log(rid);
+                        $.ajax({
+                            type: 'GET',//方法类型
+                            //dataType: "json",//预期服务器返回的数据类型
+                            url: "http://localhost:8888/GainData/getMusicPosion?rid="+rid,//url
+                            contentType: "application/json; charset=utf-8",
+                            success: function (result) {
+                                console.log("result:" + result);
+                                var playm = $("#musicplay")[0];
+                                playm.src = result;
+                                playm.play();
+                            },
+                            error: function () {
+                            }
+                        })
                 },
                 pageAfter(){
                     if(this.currPage>1){
