@@ -52,18 +52,18 @@ function register() {
         alert("邮箱不能为空");
         return false;
     }
-    alert(mail);
+    console.log("eamil:"+mail);
     $.ajax({
         type: "GET",
-        url: "http://localhost:8888/Login/register?name="+name+"&mail"+mail+"&password="+password,
+        url: "http://localhost:8888/Login/register?name="+name+"&mail="+mail+"&password="+password,
         contentType: "application/json",
         success: function (r) {
-            if (r == 1) {
-                alert("注册成功");
-                window.
+            if (r == "注册成功") {
+                alert(r);
+                window.location.href = "login.html";
                 $("#jqGrid").trigger("reloadGrid");
             } else {
-                alert("注册失败");
+                alert(r);
             }
         }})
 
