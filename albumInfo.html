@@ -1,0 +1,355 @@
+﻿<!doctype html>
+<html xmlns:v-band="http://www.w3.org/1999/xhtml" xmlns:v="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="utf-8">
+    <title>FGMusic | 专辑详情</title>
+    <meta name="keywords" content="FGMusic" />
+    <meta name="description" content="person music" />
+    <link rel="stylesheet" type="text/css" href="dist/css/style.css" />
+    <link rel="stylesheet" type="text/css" href="dist/css/player.css" />
+    <link rel="Shortcut Icon" href="dist/images/favicon.ico" />
+
+</head>
+
+<body>
+
+
+
+    <!--头部 开始-->
+    <div id="header">
+        <!--顶部bar 开始-->
+
+        <div id="headCont">
+            <audio id="audioPlayer"></audio>
+            <!--二级导航-->
+            <nav class="sub_nav">
+                <div class="nav_list">
+                    <ul>
+                        <li>
+                            <a href="index.html" class="smallogo">
+                                <span class="mini_logo"></span>
+                            </a>
+                        </li>
+                        <div class="sub_list" id="home">
+                            <p class="active">
+                                <a href="index.html">主页</a>
+                            </p>
+                        </div>
+                        <div class="sub_list" id="sub_list">
+                            <p class="active">
+                                <a href="?cat=9">播放器</a>
+                            </p>
+                        </div>
+                        <div class="sub_list" id="singers">
+                            <p class="active">
+                                <a href="singers.html">歌手</a>
+                            </p>
+                        </div>
+                        <div class="sub_list" id="music">
+                            <p class="active">
+                                <a href="rankingList.html">排行榜</a>
+                            </p>
+                        </div>
+                        <div class="sub_list" id="login" style="float: right">
+                            <p class="active">
+                                <a href="login.html">登录</a>
+                            </p>
+                        </div>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+        <!--头部导航  结束-->
+    </div>
+
+    <!-- 音乐馆 模块 开始  default-->
+    <section class="section_cont" id="albumInfo">
+        <div data-v-f8a89b8e="" class="singer_out">
+            <div style="margin-left: auto;">
+                <div data-v-f8a89b8e="" class="singer_bg"></div>
+                <div data-v-f8a89b8e="" class="singer_info flex_c" style="margin: auto">
+                    <div data-v-f8a89b8e="" class="s_imgout">
+                        <img data-v-f8a89b8e="" :src="headUrl" alt="" class="s_img" data-src="http://star.kuwo.cn/star/starheads/300/61/99/2461721588.jpg"
+                             lazy="loaded">
+                    </div>
+                    <div data-v-f8a89b8e="" class="info">
+                        <p data-v-f8a89b8e="" class="name_out flex_c">
+                            <span data-v-f8a89b8e="" class="name">{{this.albumName}}</span>
+                            <!---->
+                        </p>
+                        <div data-v-f8a89b8e="" class="info_items">
+                        <span data-v-f8a89b8e="">歌曲数：
+                            <span data-v-f8a89b8e="" class="num">{{total}}</span>
+                        </span>
+                            <span data-v-f8a89b8e="">专辑详情：
+                                <span data-v-f8a89b8e="" v-html="albumInfo"></span>
+                            </span>
+                        </div>
+                        <div data-v-f8a89b8e="" class="singer_items flex_c">
+                            <p data-v-f8a89b8e="">
+                            <span data-v-f8a89b8e="">语言：
+                                <span data-v-f8a89b8e="">{{lang}}</span>
+                            </span>
+                                <span data-v-f8a89b8e="">发布时间：
+                                <span data-v-f8a89b8e="">{{releaseDate}}</span>
+                            </span>
+                            </p>
+                        </div>
+                        <div data-v-f8a89b8e="" class="btns">
+                            <button data-v-f8a89b8e="" class="play">
+                                <i data-v-f8a89b8e="" class="iconfont icon-icon_play_"></i>播放全部歌曲</button>
+                            <button data-v-f8a89b8e="">
+                                <i data-v-f8a89b8e="" class="iconfont icon-bar_icon_heart_"></i>收藏</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="songs_rcmd">
+            <div class="omnibuss_cont new_common">
+                <div class="omnibuss_title new_common_title">
+                    <span>歌曲</span>
+                    <span><a :href="'/music-web2/album.html?sid=' + sid" class="more">歌手专辑-></a> </span>
+                </div>
+                <ul class="rcmd_center rcmd_cont" id="singerMusic">
+                    <li v-for="song in songs" >
+                        <a href="javascript:;" class="musicName"> {{song.name}}</a>
+                        <a class="shareIcon" href="javascript:;"></a>
+                        <a class="playIcon" href="javascript:;"></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="songs_rcmd_title" style="margin-top:100px">
+            <div @click="pageAfter" class="rcmd_left_title rcmd_title" style="text-align:center">
+                <span style="font-size: 20px">上一页</span>
+            </div>
+            <div class="rcmd_center_title rcmd_title" style="text-align:center">
+                <span style="font-size: 20px">第{{this.currPage}}页/共{{this.totalPage}}</span>
+            </div>
+            <div @click="pageNext" class="rcmd_right_title rcmd_title " style="text-align:center">
+                <span style="font-size: 20px">下一页</span>
+            </div>
+        </div>
+        <div style="clear:both"></div>
+    </section>
+
+    <!-- 左侧播放器 开始-->
+    <div id="jp_container_N" class="jp-video jp-video-270p" role="application" aria-label="media player">
+        <div class="jp-type-playlist">
+            <div id="jquery_jplayer_N" class="jp-jplayer"></div>
+            <div class="jp-gui">
+                <div class="jp-video-play">
+                    <button class="jp-video-play-icon" role="button" tabindex="0">播放</button>
+                </div>
+                <div class="jp-interface">
+                    <div class="jp-progress">
+                        <div class="jp-seek-bar">
+                            <div class="jp-play-bar"></div>
+                        </div>
+                    </div>
+                    <div class="jp-current-time" role="timer" aria-label="time"></div>
+                    <div class="jp-duration" role="timer" aria-label="duration"></div>
+                    <div class="jp-controls-holder">
+                        <div class="jp-controls">
+                            <button class="jp-previous" role="button" tabindex="0">上一曲</button>
+                            <button class="jp-play" role="button" tabindex="0">播放</button>
+                            <button class="jp-next" role="button" tabindex="0">下一曲</button>
+                            <button class="jp-stop" role="button" tabindex="0">暂停</button>
+                        </div>
+                        <div class="jp-volume-controls">
+                            <button class="jp-mute" role="button" tabindex="0">静音</button>
+                            <button class="jp-volume-max" role="button" tabindex="0">最大音量</button>
+                            <div class="jp-volume-bar">
+                                <div class="jp-volume-bar-value"></div>
+                            </div>
+                        </div>
+                        <div class="jp-toggles">
+                            <button class="jp-repeat" role="button" tabindex="0">重复</button>
+                            <button class="jp-shuffle" role="button" tabindex="0">随机</button>
+                            <!--<button class="jp-full-screen" role="button" tabindex="0">全屏</button>-->
+                        </div>
+                    </div>
+                    <div class="jp-details">
+                        <div class="jp-title" aria-label="title"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="jp-playlist">
+                <div class="jp-playlist-box">
+                    <ul>
+                        <!-- 该方法使用无序列表displayplaylist()播放列表 -->
+                        <li></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="jp-no-solution">
+                <span>升级需要</span>
+                您浏览器赞不支持播放，请更新版本
+                <a href="http://get.adobe.com/flashplayer/" target="_blank">Flash插件</a>.
+            </div>
+        </div>
+        <!--歌曲列表滚动条-->
+        <div class="scrollBar">
+            <div class="bar"></div>
+        </div>
+        <!--播放器展开隐藏按钮-->
+        <button type="button" class="folded_bt" title="点击收缩" id="btnfold">
+            <span></span>
+        </button>
+        <div id="listRemove"></div>
+        <!--移除全部歌曲按钮-->
+        <div id="listClose"></div>
+        <!--歌曲列表展开收缩按钮-->
+    </div>
+    <!-- 左侧播放器 结束-->
+
+    <!--底部-->
+    <div class="footer" id="footer">
+        <div class="footer_cont_left" style="margin-left: 30%">
+            <p>富贵云音乐 | 备案号 |
+                <a href="http://www.beian.gov.cn">湘ICP备18023941号-1</a>
+            </p>
+            <p>大富大贵组 | 王豪贵&nbsp;王志坚&nbsp;吴星辰&nbsp;向清润&nbsp;陈晓明&nbsp;王承超
+                <br>Copyright @
+                <a href="http://cheirmin.top">Cheirmin </a> 2019</p>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="plugins/jquery/jquery.js"></script>
+    <script type="text/javascript" src="dist/js/index.js"></script>
+    <!--播放器js-->
+    <script type="text/javascript" src="dist/js/player.js"></script>
+    <script type="text/javascript" src="dist/js/playlist.js"></script>
+    <script type="text/javascript" src="dist/js/player_database.js"></script>
+    <!--播放器js-->
+    <!-- 底部模板调用 结束 -->
+
+
+    <script src="node_modules/vue/dist/vue.js"></script>
+    <script src="node_modules/vue-resource/dist/vue-resource.js"></script>
+
+    <script>
+        var albumInfoApp=new Vue({
+
+            el: "#albumInfo",
+            data: {
+                search: {
+                    aid: 1,
+                    page: 1,
+                    limit:9
+                },
+                totalPage: 0,
+                total:0,
+                currPage:0,
+                albumName:'',
+                headUrl:'',
+                releaseDate:'',
+                albumInfo:'',
+                lang:'',
+                sid:0,
+                songs: []
+            },
+            created() {
+                this.search.aid = this.getUrlParam("aid");
+                this.ajaxGoPageSearch();
+                this.ajaxGetSongByAid();
+            },
+            methods:{
+                getUrlParam(name){
+                        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+                        var r = window.location.search.substr(1).match(reg); //匹配目标参数
+                        if (r != null) {
+                            return decodeURIComponent(r[2]);
+
+                        }
+                        return null;
+                },
+                ajaxGoPageSearch(){
+                    this.$http.post("http://127.0.0.1:8888/album/selectByAlbum_1",this.search.aid).then(
+                        function (res) {
+
+                            if (res.status==200){
+                                this.albumName = res.body.albumName;
+                                this.headUrl = res.body.headUrl;
+                                this.releaseDate = res.body.releaseDate;
+                                this.albumInfo = res.body.albumInfo;
+                                this.lang = res.body.lang;
+                                this.sid = res.body.sid;
+                            }
+
+                        },function (res) {
+
+                        }
+                    );
+                },ajaxGetSongByAid(){
+                    this.$http.post("http://127.0.0.1:8888/song/selectSongByAid",this.search).then(
+                    function (res) {
+
+                        if (res.status==200){
+                            this.totalPage=res.body.totalPage;
+                            this.total=res.body.total;
+                            this.currPage=res.body.currPage;
+                            this.songs=res.body.items;
+                            console.log(this.songs);
+                        }
+
+                    },function (res) {
+
+                    }
+                );
+                },
+                pageAfter(){
+                    if(this.currPage>1){
+
+                        this.currPage--;
+                        this.search.page = this.currPage;
+                        this.$http.post("http://127.0.0.1:8888/song/selectSongByAid",this.search).then(
+                            function (res) {
+                                if (res.status==200){
+                                    this.totalPage=res.body.totalPage;
+                                    this.total=res.body.total;
+                                    this.currPage=res.body.currPage;
+                                    this.songs=res.body.items;
+                                }
+                            },function (res) {
+
+                            }
+                        );
+                    }else{
+                        alert("第一页了！");
+                    }
+                },
+                pageNext(){
+                    if(this.currPage<this.totalPage){
+
+                        this.currPage++;
+                        this.search.page = this.currPage;
+                        this.$http.post("http://127.0.0.1:8888/song/selectSongByAid",this.search).then(
+                            function (res) {
+                                if (res.status==200){
+
+                                    this.totalPage=res.body.totalPage;
+                                    this.total=res.body.total;
+                                    this.currPage=res.body.currPage;
+                                    this.songs=res.body.items;
+                                }
+                            },function (res) {
+
+                            }
+                        );
+                    }else{
+                        alert("最后一页了！");
+                    }
+                }
+            }
+
+
+        });
+    </script>
+</body>
+
+
+</html>
