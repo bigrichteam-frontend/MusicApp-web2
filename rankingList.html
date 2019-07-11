@@ -1,5 +1,5 @@
 ﻿<!doctype html>
-<html>
+<html xmlns:v="http://www.w3.org/1999/xhtml">
 <head>
 <meta charset="utf-8">
 <title>FGMusic | 排行榜</title>
@@ -15,7 +15,7 @@
     }
 </script>
 </head>
-<body>
+<body id="rankingList">
 
 
 
@@ -72,165 +72,48 @@
 </div>
 
 <!-- 音乐馆 模块 开始  default-->
-<section class="section_cont">
+<section class="section_cont" id="rankList">
 
     <div class="songs_rcmd_title" style="margin-top:100px">
         <div class="rcmd_left_title rcmd_title">
             <span style="font-size: 20px">热歌榜</span>
-            <a href="" class="more">/更多</a>
+            <a href="listMoreSong.html?type=hot" class="more">/更多</a>
         </div>
         <div class="rcmd_center_title rcmd_title">
             <span style="font-size: 20px">新歌榜</span>
-            <a href="" class="more">/更多</a>
+            <a href="listMoreSong.html?type=song_long_time" class="more">/更多</a>
         </div>
         <div class="rcmd_right_title rcmd_title">
             <span style="font-size: 20px">飙升榜</span>
-            <a href="" class="more">/更多</a>
+            <a href="listMoreSong.html?type=song_long_time,hot" class="more">/更多</a>
         </div>
     </div>
 
     <div class="songs_rcmd" id="songs_rcmd">
         <div class="songs_rcmd_cont">
             <ul class="rcmd_left rcmd_cont" id="latest">
-				<li>
-                    <a href="" class="musicName"> Fleur de lis &#8211; Noicybino</a>
+				<li v-for="song in rank1" >
+                    <a href="" class="musicName"> {{song.name}}</a>
                     <a class="shareIcon" href="javascript:;"></a>
                     <a class="playIcon" href="javascript:;"></a>
                 </li>
-                <li>
-                    <a href="javascript:;" class="musicName">Dance, cherry blossoms! &#8211; Yuri akiyama</a>
-                    <a class="shareIcon" href="javascript:;"></a>
-                    <a class="playIcon" href="javascript:;"></a>
-                </li>
-                <li>
-                    <a href="javascript:;" class="musicName">Lost in Love &#8211; Bois LanYun</a>
-                    <a class="shareIcon" href="javascript:;"></a>
-                    <a class="playIcon" href="javascript:;"></a>
-                </li>
-                <li>
-                    <a href="javascript:;" class="musicName">远すぎた空 &#8211; Akito</a>
-                    <a class="shareIcon" href="javascript:;"></a>
-                    <a class="playIcon" href="javascript:;"></a>
-                </li>
-                <li>
-                    <a href="javascript:;" class="musicName">Whether &#8211;  AniFace</a>
-                    <a class="shareIcon" href="javascript:;"></a>
-                    <a class="playIcon" href="javascript:;"></a>
-                </li>
-                <li>
-                    <a href="javascript:;" class="musicName">Constellation Of Tatyana &#8211; Yakuro</a>
-                    <a class="shareIcon" href="javascript:;"></a>
-                    <a class="playIcon" href="javascript:;"></a>
-                </li>
-                <li>
-                    <a href="javascript:;" class="musicName">Princess &#8211; α·Pav</a>
-                    <a class="shareIcon" href="javascript:;"></a>
-                    <a class="playIcon" href="javascript:;"></a>
-                </li>
-                <li>
-                    <a href="javascript:;" class="musicName">Day by Day &#8211; Shirfine</a>
-                    <a class="shareIcon" href="javascript:;"></a>
-                    <a class="playIcon" href="javascript:;"></a>
-                </li>
-                <li>
-                    <a href="javascript:;" class="musicName">blue blossoms &#8211; 久遠</a>
-                    <a class="shareIcon" href="javascript:;"></a>
-                    <a class="playIcon" href="javascript:;"></a>
-                </li>
+
             </ul>
             <ul class="rcmd_center rcmd_cont" id="popular">
-				<li>
-                    <a href="javascript:;" class="musicName">無神論者のためのセレナータ &#8211; love solfege</a>
+				<li v-for="song in rank2" >
+                    <a href="javascript:;" class="musicName"> {{song.name}}</a>
                     <a class="shareIcon" href="javascript:;"></a>
                     <a class="playIcon" href="javascript:;"></a>
                 </li>
-                <li>
-                    <a href="javascript:;" class="musicName">Proschenie &#8211; love solfege</a>
-                    <a class="shareIcon" href="javascript:;"></a>
-                    <a class="playIcon" href="javascript:;"></a>
-                </li>
-                <li>
-                    <a href="javascript:;" class="musicName">神の光 -Μοιρα- &#8211; Sound Horizon</a>
-                    <a class="shareIcon" href="javascript:;"></a>
-                    <a class="playIcon" href="javascript:;"></a>
-                </li>
-                <li>
-                    <a href="javascript:;" class="musicName">星女神の巫女 -Αρτεμισια- &#8211; Sound Horizon</a>
-                    <a class="shareIcon" href="javascript:;"></a>
-                    <a class="playIcon" href="javascript:;"></a>
-                </li>
-                <li>
-                    <a href="javascript:;" class="musicName">石畳の緋い悪魔 &#8211; Sound Horizon</a>
-                    <a class="shareIcon" href="javascript:;"></a>
-                    <a class="playIcon" href="javascript:;"></a>
-                </li>
-                <li>
-                    <a href="javascript:;" class="musicName">この狭い鳥籠の中で &#8211; Sound Horizon</a>
-                    <a class="shareIcon" href="javascript:;"></a>
-                    <a class="playIcon" href="javascript:;"></a>
-                </li>
-                <li>
-                    <a href="javascript:;" class="musicName">Secret Track &#8211; Sound Horizon</a>
-                    <a class="shareIcon" href="javascript:;"></a>
-                    <a class="playIcon" href="javascript:;"></a>
-                </li>
-                <li>
-                    <a href="javascript:;" class="musicName">a fairy tale &#8211; MUSIRISCA</a>
-                    <a class="shareIcon" href="javascript:;"></a>
-                    <a class="playIcon" href="javascript:;"></a>
-                </li>
-                <li>
-                    <a href="javascript:;" class="musicName">Prayer &#8211; MUSIRISCA</a>
-                    <a class="shareIcon" href="javascript:;"></a>
-                    <a class="playIcon" href="javascript:;"></a>
-                </li>
+
             </ul>
             <ul class="rcmd_right rcmd_cont" id="rank">
-				<li>
-                    <a href="javascript:;" class="musicName">创奏&#8211; 霜月はるか</a>
+				<li v-for="song in rank3" >
+                    <a href="javascript:;" class="musicName"> {{song.name}}</a>
                     <a class="shareIcon" href="javascript:;"></a>
                     <a class="playIcon" href="javascript:;"></a>
                 </li>
-				<li>
-                    <a href="javascript:;" class="musicName">願い枯れゆく歌声 &#8211; Ether</a>
-                    <a class="shareIcon" href="javascript:;"></a>
-                    <a class="playIcon" href="javascript:;"></a>
-                </li>
-				<li>
-                    <a href="javascript:;" class="musicName">LICHT MEER &#8211; 河合夕子</a>
-                    <a class="shareIcon" href="javascript:;"></a>
-                    <a class="playIcon" href="javascript:;"></a>
-                </li>
-				<li>
-                    <a href="javascript:;" class="musicName">Nocturne No. 2  &#8211; Chopin</a>
-                    <a class="shareIcon" href="javascript:;"></a>
-                    <a class="playIcon" href="javascript:;"></a>
-                </li>
-				<li>
-                    <a href="javascript:;" class="musicName">夜曲 &#8211; Chopin</a>
-                    <a class="shareIcon" href="javascript:;"></a>
-                    <a class="playIcon" href="javascript:;"></a>
-                </li>
-				<li>
-                    <a href="javascript:;" class="musicName">降E大调夜曲 &#8211; Chopin</a>
-                    <a class="shareIcon" href="javascript:;"></a>
-                    <a class="playIcon" href="javascript:;"></a>
-                </li>
-				<li>
-                    <a href="javascript:;" class="musicName">即兴幻想曲 &#8211; Chopin</a>
-                    <a class="shareIcon" href="javascript:;"></a>
-                    <a class="playIcon" href="javascript:;"></a>
-                </li>
-				<li>
-                    <a href="javascript:;" class="musicName">Nocturne op. 32 &#8211; Chopin</a>
-                    <a class="shareIcon" href="javascript:;"></a>
-                    <a class="playIcon" href="javascript:;"></a>
-                </li>
-				<li>
-                    <a href="javascript:;" class="musicName">Prelude in Des &#8211; Chopin</a>
-                    <a class="shareIcon" href="javascript:;"></a>
-                    <a class="playIcon" href="javascript:;"></a>
-                </li>
+
 			</ul>
         </div>
     </div>
@@ -319,6 +202,47 @@
 <script type="text/javascript" src="dist/js/player.js"></script>
 <script type="text/javascript" src="dist/js/playlist.js"></script>
 <script type="text/javascript" src="dist/js/player_database.js"></script>
+
+<script src="node_modules/vue/dist/vue.js"></script>
+<script src="node_modules/vue-resource/dist/vue-resource.js"></script>
+
+<script>
+    var rankListApp=new Vue({
+
+        el: "#rankList" ,
+        data: {
+            rank1:[],
+            rank2:[],
+            rank3:[]
+        },
+        created() {
+            this.ajaxGoPageSearch();
+        },
+        methods:{
+            ajaxGoPageSearch(){
+                this.$http.post("http://127.0.0.1:8888/song/getRankList").then(
+                    function (res) {
+                        if (res.status==200){
+
+                            this.rank1 = res.body.items[0].items;
+                            this.rank2 = res.body.items[1].items;
+                            this.rank3 = res.body.items[2].items;
+                            console.log(this.rank1);
+
+                        }
+
+                    },function (res) {
+
+                    }
+                );
+            }
+        }
+
+
+
+    });
+</script>
+
 <!--播放器js-->
 <!-- 底部模板调用 结束 -->
 </body>

@@ -193,17 +193,9 @@
                                 <button class="btn btn-warning" onclick="userEdit()"><i
                                         class="fa fa-edit"></i>&nbsp;编辑
                                 </button>
-                                <button class="btn btn-file" id="importV1Button"><i
-                                        class="fa fa-upload"></i>&nbsp;导入V1
-                                </button>
-                                <button class="btn btn-file" onclick="importV2()"><i
-                                        class="fa fa-upload"></i>&nbsp;导入V2
-                                </button>
+
                                 <button class="btn btn-danger" onclick="userDel()"><i
                                         class="fa fa-remove"></i>&nbsp;删除
-                                </button>
-                                <button class="btn btn-file" onclick="window.location.href='/users/export'"><i
-                                        class="fa fa-download"></i>&nbsp;导出
                                 </button>
 
                                 <input type="text" placeholder="关键字" id="keyword" class="form-control col-1">&nbsp;
@@ -250,13 +242,12 @@
                                     <input type="text" class="form-control" id="nationality">
                                 </div>
                                     <div class="form-group">
-                                        <label for="place" class="control-label">出生地:</label>
+                                        <label for="place" class="control-label">语种:</label>
                                         <input type="text" class="form-control" id="place">
                                     </div>
                                     <div class="form-group">
-                                        <label for="birthday" class="control-label">出生时间:</label>
-                                        <input class="startTime form-control col-lg-2" data-enable-time="true"
-                                               data-enable-seconds="true" id="birthday" placeholder="选择出生时间" >
+                                        <label for="birthday" class="control-label">出生时间:(格式:2019-01-02)</label>
+                                        <input type="text" class="form-control" id="birthday">
                             </div>
                             <div class="form-group">
                             <label for="weight" class="control-label">体重:</label>
@@ -302,8 +293,8 @@
                                 <div class="alert alert-danger edit-error-info">错误信息展示栏。</div>
                             </div>
                             <div class="form-group">
-                                <label for="information" class="control-label">新简介:</label>
-                                <input type="text" class="form-control" id="passwordEdit">
+                                <label for="informations" class="control-label">新简介:</label>
+                                <input type="text" class="form-control" id="informations">
                             </div>
                         </form>
                     </div>
@@ -377,7 +368,6 @@
 <!-- ajax upload -->
 <script src="../plugins/ajaxupload/ajaxupload.js"></script>
 <script src="../dist/js/public.js"></script>
-<script type="text/javascript" src="../dist/js/song.js"></script>
 <script src="../dist/js/singer.js"></script>
 <script src="../dist/js/adminlte.js"></script>
 

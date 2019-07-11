@@ -193,19 +193,9 @@
                                 <button class="btn btn-warning" onclick="userEdit()"><i
                                         class="fa fa-edit"></i>&nbsp;编辑
                                 </button>
-                                <button class="btn btn-file" id="importV1Button"><i
-                                        class="fa fa-upload"></i>&nbsp;导入V1
-                                </button>
-                                <button class="btn btn-file" onclick="importV2()"><i
-                                        class="fa fa-upload"></i>&nbsp;导入V2
-                                </button>
                                 <button class="btn btn-danger" onclick="userDel()"><i
                                         class="fa fa-remove"></i>&nbsp;删除
                                 </button>
-                                <button class="btn btn-file" onclick="window.location.href='/users/export'"><i
-                                        class="fa fa-download"></i>&nbsp;导出
-                                </button>
-
                                 <input type="text" placeholder="关键字" id="keyword" class="form-control col-1">&nbsp;
 
                                 <button class="btn btn-info" onclick="search()"><i
@@ -233,6 +223,12 @@
                             <div class="form-group">
                                 <div class="alert alert-danger add-error-info">错误信息展示栏。</div>
                             </div>
+                            <input type="hidden" id="id" value="0">
+                            <div class="form-group">
+                                <div class="col-sm-10">
+                                    <img id="img" src="">
+                                </div>
+                            </div>
                             <div class="form-group">
                                 <label for="username" class="control-label">用户名:</label>
                                 <input type="text" class="form-control" id="username">
@@ -241,10 +237,18 @@
                                 <label for="userpassword" class="control-label">密码:</label>
                                 <input type="text" class="form-control" id="userpassword">
                             </div>
-                                <div class="form-group">
-                                    <label for="useremail" class="control-label">邮箱:</label>
-                                    <input type="text" class="form-control" id="useremail">
-                                </div>
+                            <div class="form-group">
+                                <label for="useremail" class="control-label">邮箱:</label>
+                                <input type="text" class="form-control" id="useremail">
+                            </div>
+                            <div class="form-group">
+                                <label for="type" class="control-label">类型:</label>
+                                <input type="text" class="form-control" id="type">
+                            </div>
+                            <div class="form-group">
+                                <label for="isDelete" class="control-label">有效:</label>
+                                <input type="text" class="form-control" id="isDelete">
+                            </div>
 
 
                             <div class="form-group">
