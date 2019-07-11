@@ -4,20 +4,19 @@ $(function () {
     $('.edit-error-info').css("display", "none");
 
     $("#jqGrid").jqGrid({
-        url: 'users/list',
+        url: 'http://127.0.0.1:8888/singer/page',
         datatype: "json",
         colModel: [
-            {label: '编号', name: 'sid', index: 'sid', width: 50, hidden: true, key: true},
-            {label: '歌手名', name: 'singers', index: 'singers', sortable: false, width: 80},
-            {label: '英文名', name: 'EnglishName', index: 'EnglishName', sortable: false, width: 80},
+            {label: '编号', name: 'id', index: 'id', width: 50, hidden: true, key: true},
+            {label: '歌手名', name: 'cName', index: 'cName', sortable: false, width: 80},
+            {label: '英文名', name: 'name', index: 'name', sortable: false, width: 80},
             {label: '性别', name: 'sex', index: 'sex', sortable: false, width: 80},
-            {label: '国籍', name: 'nationality', index: 'nationality', sortable: false, width: 60},
-            {label: '出生地', name: 'place', index: 'place', sortable: false, width: 100},
-            {label: '出生时间', name: 'birthday', index: 'birthday', sortable: false, width: 100},
+            {label: '国籍', name: 'country', index: 'country', sortable: false, width: 60},
+            {label: '出生时间', name: 'brth', index: 'brth', sortable: false, width: 100},
             {label: '体重', name: 'weight', index: 'weight', sortable: false, width: 80},
-            {label: '星座', name: 'constellation', index: 'constellation', sortable: false, width: 80},
-            {label: '头像', name: 'path', index: 'path', sortable: false, width: 80, formatter: imgFormatter},
-            {label: '个人简介', name: 'information', index: 'information', sortable: false, width: 180}
+            {label: '星座', name: 'xingZuo', index: 'xingZuo', sortable: false, width: 80},
+            {label: '头像', name: 'headUrl', index: 'headUrl', sortable: false, width: 80, formatter: imgFormatter},
+            {label: '个人简介', name: 'info', index: 'info', sortable: false, width: 180}
         ],
         height: 485,
         rowNum: 10,
@@ -30,12 +29,11 @@ $(function () {
         multiselect: true,
         pager: "#jqGridPager",
         jsonReader: {
-            root: "data.list",
-            page: "data.currPage",
-            total: "data.totalPage",
-            records: "data.totalCount"
+            root: "items",
+            page: "currPage",
+            total: "totalPage",
+            records: "total"
         },
-
         prmNames: {
             page: "page",
             rows: "limit",
@@ -121,19 +119,23 @@ function userAdd() {
 function search() {
     //标题关键字
     var keyword = $('#keyword').val();
+    if (isNull(keyword)){
+        return;
+    }
     if (!validLength(keyword, 20)) {
         swal("搜索字段长度过大!", {
             icon: "error",
         });
         return false;
     }
-
+//数据封装
+    var searchData = {"searchkey":keyword};
     //传入查询条件参数
-    $("#jqGrid").jqGrid("setGridParam");
+    $("#jqGrid").jqGrid("setGridParam",{postData: searchData});
     //点击搜索按钮默认都从第一页开始
     $("#jqGrid").jqGrid("setGridParam", {page: 1});
     //提交post并刷新表格
-    $("#jqGrid").jqGrid("setGridParam", {url: 'articles/search'}).trigger("reloadGrid");
+    $("#jqGrid").jqGrid("setGridParam", {url: 'http://127.0.0.1:8888/singer/page'}).trigger("reloadGrid");
 }
 
 function initFlatPickr() {
@@ -159,6 +161,8 @@ function initFlatPickr() {
 }
 
 function userEdit() {
+
+    $("#informations").val("");
     var id = getSelectedRow();
     if (id == null) {
         return;
@@ -178,39 +182,43 @@ function userEdit() {
 
 //绑定modal上的保存按钮
 $('#saveButton').click(function () {
-    //验证数据
-    if (validObjectForAdd()) {
+   
         //一切正常后发送网络请求
         //ajax
-        var userName = $("#userName").val();
-        var password = $("#password").val();
-        var data = {"userName": userName, "password": password};
+        var name = $("#singer").val();
+        var cName = $("#EnglishName").val();
+        var sex = $("#sex").val();
+        var country = $("#nationality").val(); //国籍
+        var language = $("#place").val();
+         var brth = $("#birthday").val();
+       var weight = $("#weight").val();
+       var xingZuo = $("#constellation").val();//星座
+      var headUrl = "testUrl";
+      var info = $("#information").val();
+        var data = {"name": name, "cName": cName,"sex":sex,"country":country,"language":language,"brth":brth,
+        "weight":weight,"xingZuo":xingZuo,"headUrl":headUrl,"info":info
+        };
         $.ajax({
             type: 'POST',//方法类型
-            dataType: "json",//预期服务器返回的数据类型
-            url: 'users/save',//url
+            //dataType: "json",//预期服务器返回的数据类型
+            url: 'http://127.0.0.1:8888/singer/addSinger',//url
             contentType: "application/json; charset=utf-8",
             data: JSON.stringify(data),
-            beforeSend: function (request) {
-                //设置header值
-                request.setRequestHeader("token", getCookie("token"));
-            },
             success: function (result) {
-                console.log(result);//打印服务端返回的数据
-                checkResultCode(result.resultCode);
-                if (result.resultCode == 200) {
+
+                if (result.code == 500) {
+                    closeModal();
+                    swal("保存成功", {
+                        icon: "error",
+                    });
+                }
+                else {
                     closeModal();
                     swal("保存成功", {
                         icon: "success",
                     });
                     //reload
                     reload();
-                }
-                else {
-                    closeModal();
-                    swal("保存成功", {
-                        icon: "error",
-                    });
                 }
                 ;
             },
@@ -222,55 +230,48 @@ $('#saveButton').click(function () {
             }
         });
 
-    }
+
 });
 
 //绑定modal上的编辑按钮
 $('#editButton').click(function () {
-    //验证数据
-    if (validObjectForEdit()) {
+    
+   
         //一切正常后发送网络请求
-        var information = $("#information").val();
-        var id = $("#sid").val();
-        var data = {"sid": sid, "information": information};
+        var information = $("#informations").val();
+        var id = $("#userId").val();
+        var data = {"sid": id, "information": information};
         $.ajax({
             type: 'POST',//方法类型
-            dataType: "json",//预期服务器返回的数据类型
-            url: 'users/updatePassword',//url
+            //dataType: "json",//预期服务器返回的数据类型
+            url: 'http://127.0.0.1:8888/singer/update',//url
             contentType: "application/json; charset=utf-8",
             data: JSON.stringify(data),
-            beforeSend: function (request) {
-                //设置header值
-                request.setRequestHeader("token", getCookie("token"));
-            },
             success: function (result) {
-                checkResultCode(result.resultCode);
-                console.log(result);//打印服务端返回的数据
-                if (result.resultCode == 200) {
-                    closeModal();
-                    swal("修改成功", {
-                        icon: "success",
-                    });
-                    //reload
-                    reload();
-                }
-                else {
-                    closeModal();
-                    swal(result.message, {
+                if(result.code==299){
+                    swal(result.msg, {
                         icon: "error",
                     });
+                    //closeModal();
+                    return;
                 }
-                ;
+                   reload();
+                   closeModal();
+
+                     swal(result, {
+                        icon: "success",
+                    });
+
             },
             error: function () {
                 reset();
-                swal(result.message, {
+                swal("添加失败", {
                     icon: "error",
                 });
             }
         });
 
-    }
+
 });
 
 //绑定modal上的编辑按钮
@@ -313,42 +314,32 @@ $('#importV2Button').click(function () {
  */
 function userDel() {
     var ids = getSelectedRows();
+
     if (ids == null) {
         return;
     }
-    swal({
-        title: "删除后将从这里移除",
-        text: "确认要删除数据吗?",
-        icon: "warning",
-        buttons: true,
-        dangerMode: true,
-    }).then((flag) > {
-        if (flag) {
+
             $.ajax({
                 type: "POST",
-                url: "users/delete",
+                //dataType: "json",
+                url: "http://127.0.0.1:8888/singer/delete",
                 contentType: "application/json",
-                beforeSend: function (request) {
-                    //设置header值
-                    request.setRequestHeader("token", getCookie("token"));
-                },
                 data: JSON.stringify(ids),
                 success: function (r) {
-                    checkResultCode(r.resultCode);
-                    if (r.resultCode == 200) {
-                        swal("删除成功", {
-                            icon: "success",
-                        });
-                        $("#jqGrid").trigger("reloadGrid");
-                    } else {
+                    if (r.code == 500) {
                         swal(r.message, {
                             icon: "error",
                         });
+                    } else {
+                        swal(r, {
+                            icon: "success",
+                        });
+                        $("#jqGrid").trigger("reloadGrid");
                     }
                 }
             });
-        }
-    });
+
+
 }
 
 /**

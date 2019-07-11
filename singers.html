@@ -30,20 +30,20 @@
             <div class="nav_list">
                 <ul>
                     <li>
-                        <a href="index.html" class="smallogo">
-                            <span class="mini_logo"></span>
+                    	<a href="index.html" class="smallogo">
+                        	<span class="mini_logo"></span>
                         </a>
                     </li>
                     <div class="sub_list" id="home">
                         <p class="active">
                             <a href="index.html">主页</a>
-                        </p>
                     </div>
+                        </p>
                     <div class="sub_list" id="sub_list">
                         <p class="active">
-                            <a href="?cat=9">播放器</a>
+                        	<a href="?cat=9">播放器</a>
                         </p>
-                    </div>
+                    </div>    
                     <div class="sub_list" id="singers">
                         <p class="active">
                             <a href="singers.html">歌手</a>
@@ -59,12 +59,6 @@
                             <a href="login.html">登录</a>
                         </p>
                     </div>
-                    <div class="sub_list" style="float: left">
-                        <input id="songName" type="text"  placeholder="请输入歌名" style="width: 200px;height: 30px;border-radius: 12px;margin-top: 5px" />
-                    </div>
-                    <div class="sub_list" id="seach" style="margin-top: 6px">
-                        <a style="color: #fff" href="songForSeach.html" onclick="seachMusic()">搜索</a>
-                    </div>
                 </ul>
             </div>
         </nav>
@@ -72,207 +66,69 @@
   	<!--头部导航  结束-->
 </div>
 
-<!-- 音乐馆 模块 开始  default-->
-<section class="section_cont">
 
-    <div class="omnibus hot_singer">
-        <div class="omnibus_cont new_common">
-            <div class="omnibus_title new_common_title">
-                <span>热门歌手</span>
-                <a href="" class="more">更多-></a>
-            </div>
-            <ul id="omnibus_list">
-                <li class="post_small">
-                    <a href="singerInfo.html?sid=001">
-                        <img src="dist/images/Deuxième%20dollars.jpg" alt="" width="130" height="130">
-                        <span>最爱的杰伦</span>
-                    </a>
-                    <a href="singerInfo.html?sid=001">周杰伦</a>
-                </li>
-                <li class="post_small">
-                    <a href="">
-                        <img src="dist/images/Deuxième%20dollars.jpg" alt="" width="130" height="130">
-                        <span></span>
-                    </a>
-                    <a href="javascript:;">清新听</a>
-                </li>
-                <li class="post_small">
-                    <a href="">
-                        <img src="dist/images/Deuxième%20dollars.jpg" alt="" width="130" height="130">
-                        <span></span>
-                    </a>
-                    <a href="javascript:;">清新听</a>
-                </li>
-                <li class="post_small">
-                    <a href="">
-                        <img src="dist/images/Deuxième%20dollars.jpg" alt="" width="130" height="130">
-                        <span></span>
-                    </a>
-                    <a href="javascript:;">清新听</a>
-                </li>
-                <li class="post_small">
-                    <a href="">
-                        <img src="dist/images/Deuxième%20dollars.jpg" alt="" width="130" height="130">
-                        <span></span>
-                    </a>
-                    <a href="javascript:;">清新听</a>
-                </li>
-                <li class="post_small">
-                    <a href="">
-                        <img src='dist/images/fasd.png' alt="" width="130" height="130">
-                        <span></span>
-                    </a>
-                    <a href="">睡前轻听</a>
-                </li>
-                <li class="post_small">
-                    <a href="">
-                        <img src="dist/images/ariko.png" alt="" width="130" height="130">
-                        <span></span>
-                    </a>
-                    <a href="">大自然的味道</a>
-                </li>
-                <li class="post_small">
-                    <a href="">
-                        <img src='dist/images/msoal.png' alt="" width="130" height="130">
-                        <span></span>
-                    </a>
-                    <a href="">123，我爱你</a>
-                </li>
-                <li class="post_small">
-                    <a href="">
-                        <img src='dist/images/lise.png' alt="" width="130" height="130">
-                        <span></span>
-                    </a>
-                    <a href="">爱是这样的</a>
-                </li>
-                <li class="post_small">
-                    <a href="">
-                        <img src="dist/images/jisad.png" alt="" width="130" height="130">
-                        <span></span>
-                    </a>
-                    <a href="">不一样的音乐</a>
-                </li>
-            </ul>
-        </div>
-        <div class="hot_singer_cont new_common">
-            <div class="hot_singer_title new_common_title">
-                <span>猜你喜欢</span>
-                <a href="" class="more"></a>
-            </div>
-            <ul class="singer_list">
-                <li>
-                    <a href="" class="singerPhoto">
-                        <img src="dist/images/18808245906449965.jpg" alt="" width="70" height="70"></a>
-                    <a href="" class="singer">蔡依林</a>
-                </li>
-                <li>
-                    <a href="" class="singerPhoto">
-                        <img src="dist/images/18619129906152259.jpg" alt="" width="70" height="70"></a>
-                    <a href="" class="singer">周杰伦</a>
-                </li>
-                <li>
-                    <a href="" class="singerPhoto">
-                        <img src="dist/images/19127104277052748.jpg" alt="" width="70" height="70"></a>
-                    <a href="?p=363" class="singer">泷泽</a>
-                </li>
-                <li>
-                    <a href="" class="singerPhoto">
-                        <img src="dist/images/19124905253592749.jpg" alt="" width="70" height="70"></a>
-                    <a href="" class="singer">Sound Horizon</a>
-                </li>
-                <li>
-                    <a href="" class="singerPhoto">
-                        <img src='dist/images/109951163112362346.jpg' alt="" width="70" height="70"></a>
-                    <a href="" class="singer">Aimer</a>
-                </li>
-                <li>
-                    <a href="" class="singerPhoto">
-                        <img src="dist/images/3283141725800255.jpg" alt="" width="70" height="70"></a>
-                    <a href="" class="singer">Ania</a>
-                </li>
-                <div style="clear:both;"></div>
-            </ul>
-        </div>
-    <div style="clear:both"></div>
-    </div>
-</section>
+<div id="singerApp">
+    <!-- 音乐馆 模块 开始  default-->
+    <section class="section_cont" >
 
-<!-- 左侧播放器 开始-->
-<div id="jp_container_N" class="jp-video jp-video-270p" role="application" aria-label="media player">
-	<div class="jp-type-playlist">
-		<div id="jquery_jplayer_N"class="jp-jplayer"></div>
-		<div class="jp-gui">
-			<div class="jp-video-play">
-				<button class="jp-video-play-icon" role="button" tabindex="0">播放</button>
-			</div>
-			<div class="jp-interface">
-				<div class="jp-progress">
-					<div class="jp-seek-bar">
-						<div class="jp-play-bar"></div>
-					</div>
-				</div>
-				<div class="jp-current-time" role="timer" aria-label="time"></div>
-				<div class="jp-duration" role="timer" aria-label="duration"></div>
-				<div class="jp-controls-holder">
-					<div class="jp-controls">
-						<button class="jp-previous" role="button" tabindex="0">上一曲</button>
-						<button class="jp-play" role="button" tabindex="0">播放</button>
-						<button class="jp-next" role="button" tabindex="0">下一曲</button>
-						<button class="jp-stop" role="button" tabindex="0">暂停</button>
-					</div>
-					<div class="jp-volume-controls">
-						<button class="jp-mute" role="button" tabindex="0">静音</button>
-						<button class="jp-volume-max" role="button" tabindex="0">最大音量</button>
-						<div class="jp-volume-bar">
-							<div class="jp-volume-bar-value"></div>
-						</div>
-					</div>
-					<div class="jp-toggles">
-						<button class="jp-repeat" role="button" tabindex="0">重复</button>
-						<button class="jp-shuffle" role="button" tabindex="0">随机</button>
-						<!--<button class="jp-full-screen" role="button" tabindex="0">全屏</button>-->
-					</div>
-				</div>
-				<div class="jp-details">
-					<div class="jp-title" aria-label="title"></div>
-				</div>
-			</div>
-		</div>
-		<div class="jp-playlist">
-        	<div class="jp-playlist-box">
-                <ul>
-                    <!-- 该方法使用无序列表displayplaylist()播放列表 -->
-                    <li></li>
+        <div class="omnibus hot_singer">
+            <div class="omnibus_cont new_common">
+                <div class="omnibus_title new_common_title">
+                    <span>热门歌手 ></span>    &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;
+                    &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;
+                    &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;
+                    <input  type="text" placeholder="大跟说：输入歌手名字" style="width: 250px;height: 30px;border-radius: 18px" v-model="search.key"/>
+                    <!--<a href="#"  @click="test">搜索歌手</a>-->
+                </div>
+                <ul id="omnibus_list">
+                    <li class="post_small" v-for="singer in singersList" :key="singer.id">
+                        <a href="#" @click="tiaozhuan(singer.id)">
+                            <img :src="singer.headUrl" alt="" width="130" height="130" style=" border-radius:75px;">
+                            <span ></span>
+                        </a>
+                        <a href="#" @click="tiaozhuan(singer.id)" v-text="singer.cName?singer.cName:singer.name"></a>
+                    </li>
+
+
+                </ul>
+
+            </div>
+
+            <!--猜你喜欢-->
+            <div class="hot_singer_cont new_common">
+                <div class="hot_singer_title new_common_title">
+                    <span>猜你喜欢</span>
+                    <a href="" class="more"></a>
+                </div>
+                <ul class="singer_list">
+
+                    <li v-for="singer in sixSinger" :key="singer.id">
+                        <a href="#" @click="tiaozhuan(singer.id)">
+                            <img :src="singer.headUrl" alt="" width="70" height="70" ></a>
+                        <a href="#" @click="tiaozhuan(singer.id)" v-text="singer.cName?singer.cName:singer.name"></a>
+                    </li>
+
+
+                    <div style="clear:both;"></div>
                 </ul>
             </div>
-		</div>
-		<div class="jp-no-solution">
-			<span>升级需要</span>
-			您浏览器赞不支持播放，请更新版本
-            <a href="http://get.adobe.com/flashplayer/" target="_blank">Flash插件</a>.
-		</div>
-	</div>
-    <!--歌曲列表滚动条-->
-    <div class="scrollBar">
-    	<div class="bar"></div>
-    </div>
-    <!--播放器展开隐藏按钮-->
-    <button type="button" class="folded_bt" title="点击收缩" id="btnfold">
-    	<span></span>
-   	</button>
-    <div id="listRemove"></div><!--移除全部歌曲按钮--> 
-    <div id="listClose"></div><!--歌曲列表展开收缩按钮-->
-</div>
-<!-- 左侧播放器 结束-->
 
-<!--底部-->
-<div class="footer" id="footer">
-    <div class="footer_cont_left" style="margin-left: 30%">
-        <p>富贵云音乐   |     备案号   |<a href="http://www.beian.gov.cn">湘ICP备18023941号-1</a></p>
-        <p>大富大贵组 |  王豪贵&nbsp;王志坚&nbsp;吴星辰&nbsp;向清润&nbsp;陈晓明&nbsp;王承超<br>Copyright @ <a href="http://cheirmin.top">Cheirmin </a> 2019</p>
-    </div>
-</div>
+        <div style="clear:both"></div>
+        </div>
+    </section>
 
+
+
+    <!--底部-->
+    <div class="footer" id="footer">
+        <div class="footer_cont_left" style="margin-left: 30%">
+            <p>    <span id="pageId" >当前第{{this.search.page}}页</span> <span >  <button type="button" style="background:#556B2F" @click="deletePage">上一页</button> &nbsp;&nbsp;&nbsp;&nbsp;
+                    <button type="button" style="background:#B8860B" @click="addPage">下一页</button> </span> <span id="totalId">共{{this.totalPage}}页,共{{this.total}}个歌手</span> </p>
+            <p>大富大贵组 |  吴星辰&nbsp;王志坚&nbsp;王富贵&nbsp;向清润&nbsp;陈晓明&nbsp;王承超<br>ITwcxing.com @ <a href="#">ITwcxing.com </a> 2019</p>
+        </div>
+    </div>
+
+</div>
 <script type="text/javascript" src="plugins/jquery/jquery.js"></script>
 <script type="text/javascript" src="dist/js/index.js"></script>
 <!--播放器js-->
@@ -281,6 +137,105 @@
 <script type="text/javascript" src="dist/js/player_database.js"></script>
 <!--播放器js-->
 <!-- 底部模板调用 结束 -->
+
+
+
+
+
+<script src="node_modules/vue/dist/vue.js"></script>
+
+<script src="node_modules/vue-resource/dist/vue-resource.js"></script>
+<script>
+    var singerApp=new Vue({
+
+        el: "#singerApp" ,
+        data: {
+            search: {
+                key: "",
+                page: 1,
+            },
+            totalPage: 0,
+            total:0,
+            singersList: [],
+            sixSinger:[],
+        },
+        created() {
+            this.ajaxGoPageSearch();
+            this.ajaxGoGetSixSinger();
+        },
+        watch: {
+            search: {
+                deep: true,
+                handler(val, old) {
+
+                    this.ajaxGoPageSearch();
+                }
+            }
+
+        },
+        methods:{
+            ajaxGoPageSearch(){
+                this.$http.post("http://127.0.0.1:8888/singer/qiantaiPage",this.search).then(
+                    function (res) {
+
+                        if (res.status==200){
+                              this.totalPage=res.data.totalPage;
+
+                              this.total=res.data.total;
+                              this.singersList=res.data.items;
+                        }
+                        
+                    },function (res) {
+
+                    }
+                );
+            },
+           addPage(){
+                if (this.search.page==this.totalPage){
+                    return;
+                }else {
+                    this.search.page=this.search.page+1;
+                    this.ajaxGoPageSearch()
+                }
+
+           } ,
+           deletePage(){
+               if (this.search.page==1){
+                   return;
+               } else {
+                   this.search.page=this.search.page-1;
+                   this.ajaxGoPageSearch()
+               }
+           },
+            tiaozhuan(id){
+                window.location.href="singerInfo.html?sid="+id;
+            },
+            ajaxGoGetSixSinger(){
+                this.$http.post("http://127.0.0.1:8888/singer/getSixSinger").then(
+                    function (res) {
+
+                        if (res.status==200){
+
+                            this.sixSinger=res.data;
+                        }
+
+                    },function (res) {
+
+                    }
+                );
+            },
+            test(){
+              alert(this.search.key)
+            },
+    },
+
+    });
+
+
+
+</script>
+
+
 </body>
 </html>
 
