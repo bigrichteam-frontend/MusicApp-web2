@@ -187,18 +187,15 @@
                     <div class="card">
                         <div class="card-body">
                             <div class="grid-btn">
-                                <button class="btn btn-info" onclick="articleAdd()"><i
-                                        class="fa fa-plus"></i>&nbsp;新增
-                                </button>
                                 <button class="btn btn-info" onclick="articleEdit()"><i
                                         class="fa fa-pencil-square-o"></i>&nbsp;修改
                                 </button>
-                                <button class="btn btn-danger" onclick="deleteArticle()"><i
+                                <button class="btn btn-danger" onclick="deleteSong()"><i
                                         class="fa fa-trash-o"></i>&nbsp;删除
                                 </button>&nbsp;&nbsp;
-                                <button class="btn btn-file" id="importV1Button"><i
-                                        class="fa fa-upload"></i>&nbsp;导入
-                                </button>
+                                <!--<button class="btn btn-file" id="importV1Button"><i-->
+                                        <!--class="fa fa-upload"></i>&nbsp;导入-->
+                                <!--</button>-->
 
                                 <input type="text" placeholder="关键字" id="keyword" class="form-control col-1">&nbsp;
                                 <!--<input class="startTime form-control col-lg-2" data-enable-time="true"
@@ -219,7 +216,7 @@
         </div>
 
         <div class="content">
-            <div class="modal fade" id="articleModal" tabindex="-1" role="dialog" aria-labelledby="articleModalLabel">
+            <div class="modal fade" id="songModal" tabindex="-1" role="dialog" aria-labelledby="articleModalLabel">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content" style="width: 500px;height: 630px;">
                         <div class="modal-header">
@@ -232,44 +229,21 @@
                                 <div class="form-group">
                                     <div class="alert alert-danger">错误信息展示栏。</div>
                                 </div>
-                                <input type="hidden" id="articleId" value="0">
+                                <input type="hidden" id="songId" value="0"/>
                                 <div class="form-group">
-                                    <label for="articleName" class="control-label">歌曲名:</label>
-                                    <input type="text" class="form-control" style="width: 70%" id="articleName">
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="songurl" class="control-label">歌曲url:</label>
-                                    <input type="text" class="form-control" id="songurl">
+                                    <label for="name" class="control-label">歌曲名:</label>
+                                    <input type="text" class="form-control" style="width: 70%" id="name">
                                 </div>
                                 <div class="form-group">
-                                    <label for="duration" class="control-label">时长:</label>
-                                    <input type="text" class="form-control" id="duration">
+                                    <label for="musicTime" class="control-label">时长:</label>
+                                    <input type="text" class="form-control" id="musicTime">
                                 </div>
-
-
-                                <div class="form-group">
-                                    <div class="col-sm-10">
-                                        <a class="btn btn-info" id="upload"><i
-                                                class="fa fa-picture-o"></i>&nbsp;图片</a>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="time" class="control-label">发布时间:</label>
-                                    <!--<input type="text" class="form-control" id="time">-->
-                                    <input id="time" class="startTime form-control col-lg-2" data-enable-time="true"
-                                           data-enable-seconds="true" placeholder="发布时间" style="width: 100%">
-
-                                </div>
-                               <!-- <div class="form-group">
-                                    <label for="articleAuthor" class="control-label">作者:</label>
-                                    <input type="text" class="form-control" style="width: 70%" id="articleAuthor">
-                                </div>-->
-                                <!--<div class="form-group">
-                                    <label class="control-label">内容:</label>
-                                    <textarea class="form-control" id="editor"
-                                              style="width:700px;height:450px;"></textarea>
-                                </div>-->
+                                <!--<div class="form-group">-->
+                                    <!--<div class="col-sm-10">-->
+                                        <!--<a class="btn btn-info" id="upload"><i-->
+                                                <!--class="fa fa-picture-o"></i>&nbsp;图片</a>-->
+                                    <!--</div>-->
+                                <!--</div>-->
                             </form>
                         </div>
                         <div class="modal-footer">
@@ -286,20 +260,20 @@
             <div class="modal" id="importV2Modal" tabindex="-1" role="dialog" aria-labelledby="importV2ModalLabel">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
-                        <div class="modal-header">
-                            <h6 class="modal-title" id="importV2ModalLabel">歌手导入</h6>
-                        </div>
-                        <div class="modal-body">
-                            <div>
-                                <div class="form-group">
-                                    <input type="hidden" id="fileUrl" value="">
-                                    <div class="col-sm-10">
-                                        <a class="btn btn-info" id="uploadExcelV2"><i
-                                                class="fa fa-file"></i>&nbsp;上传Excel文件</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        <!--<div class="modal-header">-->
+                            <!--<h6 class="modal-title" id="importV2ModalLabel">歌手导入</h6>-->
+                        <!--</div>-->
+                        <!--<div class="modal-body">-->
+                            <!--<div>-->
+                                <!--<div class="form-group">-->
+                                    <!--<input type="hidden" id="fileUrl" value="">-->
+                                    <!--<div class="col-sm-10">-->
+                                        <!--<a class="btn btn-info" id="uploadExcelV2"><i-->
+                                                <!--class="fa fa-file"></i>&nbsp;上传Excel文件</a>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                        <!--</div>-->
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default" id="cancelImportV2">取消</button>
                             <button type="button" class="btn btn-primary" id="importV2Button">确认</button>
