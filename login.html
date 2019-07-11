@@ -30,10 +30,10 @@
         <ion-icon name="logo-linkedin"></ion-icon>
         </a> </div>
       <span>或使用您的电子邮箱注册</span>
-      <input type="text" placeholder="姓名">
-      <input type="email" placeholder="邮箱">
-      <input type="password" placeholder="密码">
-      <button>注册</button>
+      <input type="text" id="username" placeholder="姓名">
+      <input type="text" id="email" placeholder="邮箱">
+      <input type="password" id="userpwd" placeholder="密码">
+      <button onclick="register()">注册</button>
     </form>
   </div>
   <div class="form-container sign-in-container">
@@ -46,10 +46,10 @@
         </a> <a href="#" class="social">
         <ion-icon name="logo-linkedin"></ion-icon>
         </a> </div>
-      <span>或用邮箱登录</span>
-      <input type="email" placeholder="邮箱">
-      <input type="password" placeholder="密码">
-      <button>登录</button>
+      <span>使用用户名登录</span>
+      <input type="text" id="name" placeholder="用户名">
+      <input type="password" id="password" placeholder="密码">
+      <button  onclick="login()">登录</button>
     </form>
   </div>
   <div class="overlay-container">
@@ -67,8 +67,10 @@
     </div>
   </div>
 </div>
-
+<script src="plugins/jquery/jquery.min.js"></script>
 <script  src="dist/js/script.js"></script>
+<script  src="dist/js/userlogin.js"></script>
+
 	
 </body>
 </html>
